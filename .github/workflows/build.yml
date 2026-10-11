@@ -1,0 +1,36 @@
+name: ESP32-P4 Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install ESP-IDF
+        uses: espressif/install-esp-idf-action@v1
+        with:
+          version: v6.1
+
+      - name: Configure ESP32-P4
+        run: idf.py set-target esp32p4
+
+      - name: Build firmware
+        run: idf.py build
+
+      - name: Upload firmware
+        uses: actions/upload-artifact@v4
+        with:
+          name: medamano-firmware
+          path: |
+            build/*.bin
+            build/*.elf
+          if-no-files-found: error
