@@ -1,0 +1,42 @@
+# ESP-IDF build tree (idf.py / CMake / Ninja)
+/build/
+
+# menuconfig writes this backup next to sdkconfig.
+# sdkconfig and sdkconfig.defaults* stay tracked.
+sdkconfig.old
+
+# Component Manager downloads. Commit dependencies.lock.
+/managed_components/
+
+# Language server state. These embed this machine's IDF and toolchain paths.
+/.cache/
+/.clangd
+/compile_commands.json
+
+# Editor state. .vscode/settings.json points at a local IDF install.
+/.vscode/
+/.idea/
+/cmake-build-*/
+CMakeUserPresets.json
+
+# Python
+__pycache__/
+*.py[cod]
+/.venv/
+/venv/
+
+# Editor and OS junk
+*~
+*.swp
+*.swo
+.gdb_history
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Coverage and on-target test logs
+*.gcda
+*.gcno
+coverage.info
+/pytest-embedded/
